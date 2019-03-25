@@ -1,0 +1,47 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <!-- Package info -->
+  <PropertyGroup>
+    <PackageId>TagBites.Indexes</PackageId>
+    <Product>TagBites.Indexes</Product>
+    <Title>TagBites.Indexes</Title>
+
+    <Description>Wrapper for Lucene.Net full-text search index to simplify creation, searching and to store it as a single file.</Description>
+    <PackageTags>TagBites.Indexes;Lucene.Net;full-text search;index;single file</PackageTags>
+
+    <PackageProjectUrl>https://www.tagbites.com/indexes</PackageProjectUrl>
+    <PackageIconUrl>https://www.tagbites.com/indexes/icon.png</PackageIconUrl>
+
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <PackageLicenseUrl>https://www.tagbites.com/indexes/license.txt</PackageLicenseUrl>
+
+    <RepositoryType>git</RepositoryType>
+    <RepositoryUrl>https://github.com/TagBites/TagBites.Indexes.git</RepositoryUrl>
+  </PropertyGroup>
+
+  <!-- Targets -->
+  <PropertyGroup>
+    <TargetFrameworks>netstandard2.0;net45</TargetFrameworks>
+  </PropertyGroup>
+
+  <!-- Build -->
+  <PropertyGroup>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+  </PropertyGroup>
+
+  <!-- References -->
+  <ItemGroup>
+    <PackageReference Include="Lucene.Net" Version="4.8.0-beta00005" />
+    <PackageReference Include="Lucene.Net.Analysis.Stempel" Version="4.8.0-beta00005" />
+    <PackageReference Include="Lucene.Net.Highlighter" Version="4.8.0-beta00005" />
+    <PackageReference Include="Lucene.Net.QueryParser" Version="4.8.0-beta00005" />
+    <PackageReference Include="SharpZipLib" Version="1.1.0" />
+  </ItemGroup>
+
+  <!-- Sources -->
+  <ItemGroup>
+    <Folder Include="Properties\" />
+  </ItemGroup>
+
+</Project>
