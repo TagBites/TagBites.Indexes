@@ -61,7 +61,7 @@ namespace TagBites.Indexes
 
             var result = SearchCore(query, FieldsAll, topResultCount);
 
-            if (result.Total == 0)
+            if (result.Total < topResultCount && (Config.TryContainsSearch || Config.TryFullWildcardSearchOnTitle))
             {
                 if (query.Contains('"')
                     || query.Contains('*')
@@ -74,22 +74,22 @@ namespace TagBites.Indexes
                 if (Config.TryContainsSearch)
                 {
                     var q = query + "*";
-                    result = SearchCore(q, FieldsAll, topResultCount);
+                    result = result.Combine(SearchCore(q, FieldsAll, topResultCount));
                 }
 
-                if (result.Total == 0 && Config.TryContainsSearch)
+                if (result.Total < topResultCount && Config.TryContainsSearch)
                 {
                     var q = "*" + query + "*";
-                    result = SearchCore(q, FieldsAll, topResultCount);
+                    result = result.Combine(SearchCore(q, FieldsAll, topResultCount));
                 }
 
-                if (result.Total == 0 && Config.TryFullWildcardSearchOnTitle)
+                if (result.Total < topResultCount && Config.TryFullWildcardSearchOnTitle)
                 {
                     var words = Split(query);
                     if (words.Length == 1)
                     {
                         var q = "*" + string.Join("*", words[0].ToArray()) + "*";
-                        result = SearchCore(q, FieldsTitle, topResultCount);
+                        result = result.Combine(SearchCore(q, FieldsTitle, topResultCount));
                     }
                 }
             }
@@ -132,7 +132,7 @@ namespace TagBites.Indexes
                 {
                     var preview = highlighter.GetBestFragments(stream, content, Config.ResultFragments, Config.FragmentSeparator);
 
-                    var item = new SearchResultItem(url, title, preview);
+                    var item = new SearchResultItem(url, ToWbrWrapName(title), preview);
                     items.Add(item);
                 }
             }
@@ -156,6 +156,20 @@ namespace TagBites.Indexes
             }
         }
 
+        private static string ToWbrWrapName(string name)
+        {
+            var sb = new StringBuilder(name.Length * 2);
+
+            for (var i = 0; i < name.Length; i++)
+            {
+                if (i > 0 && char.IsUpper(name[i]) && !char.IsUpper(name[i - 1]))
+                    sb.Append("<wbr>");
+
+                sb.Append(name[i]);
+            }
+
+            return sb.ToString();
+        }
         private static string[] Split(string query)
         {
             return query.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);

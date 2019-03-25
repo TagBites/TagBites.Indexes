@@ -40,7 +40,7 @@ namespace TagBites.Indexes.Tests
             var config = new SearchIndexConfig()
             {
                 AnalyzerName = "polish",
-                AsciiFolding = true
+                //AsciiFolding = true
             };
 
             using (var searchIndex = new SearchIndex(CreateSearchIndex, config))
