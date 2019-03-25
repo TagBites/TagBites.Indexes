@@ -1,6 +1,6 @@
 # TagBites.Indexes
 
-Wrapper for Lucene.Net full-text search index to simplify creation/search and to store it as single file.
+Wrapper for Lucene.Net full-text search index to simplify creation, searching and to store it as a single file.
 
 ## Creating Index Example
 
