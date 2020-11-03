@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
 using Lucene.Net.Documents;
+using Lucene.Net.Documents.Extensions;
 using Lucene.Net.Index;
-using Lucene.Net.Util;
 
 namespace TagBites.Indexes
 {

@@ -1,17 +1,20 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.438
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30611.23
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TagBites.Indexes", "src\TagBites.Indexes\TagBites.Indexes.csproj", "{4B2C57EF-5E0A-451F-89BB-63A4BA720424}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{C6ADA22A-E08B-4A0C-9701-B2E9F2CC3F08}"
 	ProjectSection(SolutionItems) = preProject
+		Directory.Build.props = Directory.Build.props
+		Directory.Build.targets = Directory.Build.targets
 		Licensing.props = Licensing.props
+		README.md = README.md
 		Version.props = Version.props
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TagBites.Indexes.Tests", "src\TagBites.Indexes.Tests\TagBites.Indexes.Tests.csproj", "{D04B0E44-97CB-4901-9A92-17A4A61AC016}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TagBites.Indexes.Tests", "src\TagBites.Indexes.Tests\TagBites.Indexes.Tests.csproj", "{D04B0E44-97CB-4901-9A92-17A4A61AC016}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
