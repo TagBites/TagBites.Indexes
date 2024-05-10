@@ -154,7 +154,7 @@ namespace TagBites.Indexes
             {
                 lock (_stream)
                 {
-                    var offset1 = GetFilePointer();
+                    var offset1 = Position;
                     _stream.Seek(offset1, SeekOrigin.Begin);
 
                     if (offset1 + len > _length)
