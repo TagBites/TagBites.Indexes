@@ -4,22 +4,37 @@
   <PropertyGroup>
     <Company>Tag Bites sp. z o.o.</Company>
     <Authors>Tag Bites sp. z o.o.</Authors>
-    <Copyright>Tag Bites sp. z o.o. © 2012-2020</Copyright>
+    <CopyrightSinceYear>2012</CopyrightSinceYear>
+    
+    <Copyright>© $(CopyrightSinceYear)-$([System.DateTime]::Today.ToString(`yyyy`)) $(Company)</Copyright>
   </PropertyGroup>
 
   <!-- Bin/Obj directories -->
   <PropertyGroup>
-    <BaseOutputPath>$(SolutionDir)bin\</BaseOutputPath>
+    <BaseOutputPath>$(SolutionDir)bin\$(MSBuildProjectName)\</BaseOutputPath>
+    <PackageOutputPath>$(SolutionDir)bin\</PackageOutputPath>
     <BaseIntermediateOutputPath>$(SolutionDir)bin\obj\$(MSBuildProjectName)\</BaseIntermediateOutputPath>
   </PropertyGroup>
 
   <!-- Compilation settings -->
   <PropertyGroup>
-    <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
     <LangVersion>latest</LangVersion>
+    <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
     <Deterministic>true</Deterministic>
   </PropertyGroup>
 
+  <!-- Documentation -->
+  <PropertyGroup>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+  </PropertyGroup>
+
+  <!-- Publish -->
+  <PropertyGroup Condition="'$(Configuration)' == 'Publish'">
+    <DebugType>none</DebugType>
+    <Optimize>True</Optimize>
+    <GenerateDocumentationFile>false</GenerateDocumentationFile>
+  </PropertyGroup>
+  
   <!-- Globalziation -->
   <PropertyGroup>
     <NeutralLanguage>en-US</NeutralLanguage>
@@ -33,5 +48,6 @@
   <!-- Includes -->
   <Import Condition="exists('Version.props')" Project="Version.props" />
   <Import Condition="exists('Licensing.props')" Project="Licensing.props" /> 
+  <Import Condition="exists('Package.props')" Project="Package.props" /> 
 
 </Project>
