@@ -1,13 +1,10 @@
-﻿using System;
-using System.IO;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Xunit;
 
 namespace TagBites.Indexes.Tests
 {
-    [TestClass]
     public class SearchIndexUnitTest
     {
-        [TestMethod]
+        [Fact]
         public void SearchTest()
         {
             var config = new SearchIndexConfig();
@@ -15,26 +12,26 @@ namespace TagBites.Indexes.Tests
             using (var searchIndex = new SearchIndex(CreateDefaultSearchIndex, config))
             {
                 var result = searchIndex.Search("file content");
-                Assert.AreEqual(2, result.Total);
+                Assert.Equal(2, result.Total);
 
                 result = searchIndex.Search("*ile");
-                Assert.AreEqual(2, result.Total);
+                Assert.Equal(2, result.Total);
 
                 result = searchIndex.Search("ile");
-                Assert.AreEqual(2, result.Total);
+                Assert.Equal(2, result.Total);
 
                 result = searchIndex.Search("tte");
-                Assert.AreEqual(2, result.Total);
+                Assert.Equal(2, result.Total);
 
                 result = searchIndex.Search("reft");
-                Assert.AreEqual(1, result.Total);
+                Assert.Equal(1, result.Total);
 
                 result = searchIndex.Search("stile");
-                Assert.AreEqual(1, result.Total);
+                Assert.Equal(1, result.Total);
             }
         }
 
-        [TestMethod]
+        [Fact]
         public void AsciiFoldingTestTest()
         {
             var config = new SearchIndexConfig()
@@ -46,10 +43,10 @@ namespace TagBites.Indexes.Tests
             using (var searchIndex = new SearchIndex(CreateSearchIndex, config))
             {
                 var result = searchIndex.Search("stół");
-                Assert.AreEqual(1, result.Total);
+                Assert.Equal(1, result.Total);
 
                 result = searchIndex.Search("stol");
-                Assert.AreEqual(1, result.Total);
+                Assert.Equal(1, result.Total);
             }
 
             void CreateSearchIndex(SearchIndexBuilder searchIndex)
